@@ -129,9 +129,6 @@ const loginUser = async (req, res) => {
     }
 };
 
-
-
-
 const adminLogin = async (req, res) => {
 
 }
