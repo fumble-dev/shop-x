@@ -31,33 +31,69 @@ const addProduct = async (req, res) => {
         const product = new productModel(productData);
         await product.save();
 
-        return res.json({
+        return res.status(201).json({
             success: true,
             message: "Product added successfully",
             product
         });
 
-
     } catch (error) {
-        res.json({
+        console.error(error);
+        return res.status(500).json({
             success: false,
             message: "Product listing failed."
-        })
-        console.error(error)
+        });
     }
 }
 
 const removeProduct = async (req, res) => {
-
+    try {
+        await productModel.findByIdAndDelete(req.body.id);
+        return res.status(200).json({
+            success: true,
+            message: "Product removed successfully."
+        });
+    } catch (error) {
+        console.error(error);
+        return res.status(500).json({
+            success: false,
+            message: "Product deletion failed."
+        });
+    }
 }
 
 const listProducts = async (req, res) => {
-
+    try {
+        const products = await productModel.find({});
+        return res.status(200).json({
+            success: true,
+            products: products
+        });
+    } catch (error) {
+        console.error(error);
+        return res.status(500).json({
+            success: false,
+            message: "Failed to retrieve products."
+        });
+    }
 }
 
 const singleProduct = async (req, res) => {
+    try {
+        const { productId } = req.body;
+        const product = await productModel.findById(productId);
 
+        return res.status(200).json({
+            success: true,
+            product: product
+        });
+    } catch (error) {
+        console.error(error);
+        return res.status(500).json({
+            success: false,
+            message: "Error retrieving product details."
+        });
+    }
 }
 
 export { addProduct, removeProduct, listProducts, singleProduct }
-
