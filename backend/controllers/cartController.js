@@ -1,4 +1,4 @@
-import userModel from "../models/userModel";
+import userModel from "../models/userModel.js";
 
 const addToCart = async (req, res) => {
     try {
@@ -37,7 +37,7 @@ const updateCart = async (req, res) => {
         let cartData = user.cartData;
         cartData[itemId][size] = quantity;
 
-        await user.findByIdAndUpdate(userId, { cartData })
+        await userModel.findByIdAndUpdate(userId, { cartData })
 
         return res.json({
             success: true,
