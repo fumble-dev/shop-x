@@ -20,13 +20,64 @@ const Add = ({ token }) => {
     const [bestseller, setBestSeller] = useState(false);
     const [sizes, setSizes] = useState([]);
 
-    const [loading, setLoading] = useState(false); 
+    const [loading, setLoading] = useState(false);
 
+    // const onSubmitHandler = async (e) => {
+    //     e.preventDefault();
+
+    //     try {
+    //         setLoading(true); 
+
+    //         const formData = new FormData();
+
+    //         formData.append("name", name);
+    //         formData.append('description', description);
+    //         formData.append('price', price)
+    //         formData.append('category', category)
+    //         formData.append('subCategory', subcategory)
+    //         formData.append('bestseller', bestseller)
+    //         formData.append('sizes', JSON.stringify(sizes))
+    //         image1 && formData.append('image1', image1)
+    //         image2 && formData.append('image2', image2)
+    //         image3 && formData.append('image3', image3)
+    //         image4 && formData.append('image4', image4)
+
+    //         const response = await axios.post(backendUrl + '/api/product/add', formData, { headers: { token } })
+    //         if (response.data.success) {
+    //             toast.success(response.data.message)
+    //             setName('')
+    //             setDescription('')
+    //             setImage1(false)
+    //             setImage2(false)
+    //             setImage3(false)
+    //             setImage4(false)
+    //             setPrice('')
+    //             setCategory('')
+    //             setSubCategory('')
+    //             setSizes([])
+    //             setBestSeller(false)
+    //         } else {
+    //             toast.error(response.data.message)
+    //         }
+
+    //     } catch (error) {
+    //         toast.error("Product adding failed")
+    //         console.error(error)
+    //     } finally {
+    //         setLoading(false); 
+    //     }
+    // }
     const onSubmitHandler = async (e) => {
         e.preventDefault();
 
+        // Validation for category and subcategory
+        if (!category || !subcategory) {
+            toast.error("Please select both Category and Subcategory.");
+            return;
+        }
+
         try {
-            setLoading(true); 
+            setLoading(true);
 
             const formData = new FormData();
 
@@ -52,8 +103,8 @@ const Add = ({ token }) => {
                 setImage3(false)
                 setImage4(false)
                 setPrice('')
-                setCategory('')
-                setSubCategory('')
+                setCategory('Men')  // Reset to default category
+                setSubCategory('Topwear')  // Reset to default subcategory
                 setSizes([])
                 setBestSeller(false)
             } else {
@@ -64,7 +115,7 @@ const Add = ({ token }) => {
             toast.error("Product adding failed")
             console.error(error)
         } finally {
-            setLoading(false); 
+            setLoading(false);
         }
     }
 

@@ -18,11 +18,13 @@ const addProduct = async (req, res) => {
             })
         )
 
+        const isBestSeller = bestSeller === 'true' || bestSeller === true;
+
         const productData = {
             name, description,
             price: Number(price),
             category, subCategory,
-            bestSeller: bestSeller === 'true' ? true : false,
+            bestSeller: isBestSeller,
             sizes: JSON.parse(sizes),
             image: imagesUrl,
             date: Date.now()

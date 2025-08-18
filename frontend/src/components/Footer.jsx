@@ -6,7 +6,7 @@ const Footer = () => {
     <div className="mt-40 text-sm">
       <div className="flex flex-col sm:grid grid-cols-[3fr_1fr_1fr] gap-14 my-10">
         <div>
-          <img src={assets.logo} className="mb-5 w-32" alt="ShopX Logo" />
+          <img src={assets.shopx} className="mb-5 w-32" alt="ShopX Logo" />
           <p className="w-full md:w-2/3 text-gray-600">
             ShopX is your go-to destination for the latest trends, quality products, 
             and unbeatable prices — all in one place.
